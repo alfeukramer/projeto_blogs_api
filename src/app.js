@@ -1,4 +1,6 @@
 const express = require('express');
+const errors = require('./middlewares/genericError');
+const loginRouter = require('./routes/login.routes');
 // const routesAuth = require('./routes/auth.routes');
 
 // ...
@@ -7,9 +9,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use((err, req, res, _next) => {
-    res.status(err.status || 500).json({ message: err.message });
-});
+app.use('/login', loginRouter);
+
+app.use(errors);
 
 // ...
 
