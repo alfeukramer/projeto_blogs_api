@@ -22,8 +22,16 @@ const getAllUsers = async () => {
     return getAll;
 };
 
+const getUserById = async (id) => {
+    const verifyId = await User.findByPk(id, { attributes: { exclude: 'password' } });
+    console.log('log id', verifyId);
+    return verifyId;
+};
+
 module.exports = {
     emailExist,
     createUser,
     getAllUsers,
+    getUserById,
+    
 };
