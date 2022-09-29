@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const CategoriesSchema = sequelize.define('Category', {
+    const Category = sequelize.define('Category', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -11,5 +11,5 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
     }, { timestamps: false, underscored: true, tableName: 'categories' });
-    return CategoriesSchema;
+    return Category;
 };
