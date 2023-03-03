@@ -1,5 +1,6 @@
 require('dotenv').config();
-
+const fs = require('fs');
+const { join } = require('path');
 const jwt = require('jsonwebtoken');
 
 const jwtConfig = ({
@@ -7,13 +8,24 @@ const jwtConfig = ({
     algorithm: 'HS256',
 });
 
-const TOKEN_SECRET = process.env.JWT_SECRET || 'testeChave';
+const path = '../jwt.key';
 
-const generateToken = (payload) =>
-    jwt.sign(payload, TOKEN_SECRET, jwtConfig);
+function readSecretKey() {
+        try {
+        const token = fs.readFileSync(join(__dirname, path), 'utf8');
+        return token;
+} catch (e) {
+    console.log(e);
+}
+}
+
+const generateToken = (payload) => {
+   const token = jwt.sign(payload, readSecretKey(), jwtConfig);
+   return token;
+};
 
 const authToken = async (token) => {
-        const instropection = await jwt.verify(token, TOKEN_SECRET);
+        const instropection = await jwt.verify(token, readSecretKey());
         return instropection;
 };
 

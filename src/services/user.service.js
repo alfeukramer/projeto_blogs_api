@@ -24,7 +24,6 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
     const verifyId = await User.findByPk(id, { attributes: { exclude: 'password' } });
-    console.log('log id', verifyId);
     return verifyId;
 };
 

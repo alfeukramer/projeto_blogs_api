@@ -11,7 +11,6 @@ const getPosts = async () => {
                 as: 'categories' },
         ],
     });
-    console.log('log de get all', getAll);
     return getAll;
 };
 
@@ -28,7 +27,13 @@ const getPostById = async (id) => {
     return getById;
 };
 
+const putPostById = async (title, content, id) => {
+    const putById = await BlogPost.update({ title, content }, { where: { id } });
+    return putById;
+};
+
 module.exports = {
     getPosts,
     getPostById,
+    putPostById,
 };

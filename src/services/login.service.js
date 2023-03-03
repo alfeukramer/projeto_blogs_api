@@ -7,7 +7,6 @@ const postLogin = async ({ email, password }) => {
         where: 
         { email, password },
     }); 
-    console.log('log do loginData', loginData);
 
     if (!loginData) {
         return loginData;
